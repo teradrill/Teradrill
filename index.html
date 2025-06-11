@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Teradrill</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #e3f2fd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    h2 {
+      text-align: center;
+      color: #1565c0;
+      margin-bottom: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1.5px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #1565c0;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #0d47a1;
+    }
+    .google-btn {
+      display: none;
+      background-color: white;
+      color: #444;
+      border: 1px solid #ddd;
+      font-weight: 500;
+      margin-top: 10px;
+    }
+    .google-btn img {
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+    .toggle {
+      text-align: center;
+      margin-top: 15px;
+      color: #1565c0;
+      cursor: pointer;
+    }
+    #error {
+      color: red;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      text-align: center;
+      min-height: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 id="formTitle">Login</h2>
+    <div id="error"></div>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button onclick="handleAuth()" id="authBtn">Login</button>
+    
+    <!-- Google Sign-In button, shown only on signup mode -->
+    <button class="google-btn" id="googleBtn" onclick="signInWithGoogle()">
+      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="20" height="20" alt="Google logo">
+      Sign up with Google
+    </button>
+
+    <div class="toggle" onclick="toggleMode()">Don't have an account? Sign Up</div>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBMgeW6QtxudLTtH8AOSl_89wLpL3ggHSs",
+      authDomain: "teradrill-7bb95.firebaseapp.com",
+      projectId: "teradrill-7bb95",
+      storageBucket: "teradrill-7bb95.appspot.com",
+      messagingSenderId: "886182110027",
+      appId: "1:886182110027:web:53eb81d9ed2e0669c03ece"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    let mode = "login"; // or "signup"
+
+    function toggleMode() {
+      mode = mode === "login" ? "signup" : "login";
+      document.getElementById("formTitle").textContent = mode === "login" ? "Login" : "Sign Up";
+      document.getElementById("authBtn").textContent = mode === "login" ? "Login" : "Sign Up";
+      document.querySelector(".toggle").textContent = mode === "login" ? "Don't have an account? Sign Up" : "Already have an account? Login";
+      document.getElementById("error").textContent = "";
+
+      // Show/hide Google button
+      document.getElementById("googleBtn").style.display = mode === "signup" ? "block" : "none";
+    }
+
+    function handleAuth() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const errorDiv = document.getElementById("error");
+
+      if (mode === "login") {
+        auth.signInWithEmailAndPassword(email, password)
+          .then(() => {
+            location.href = "index.html"; // Redirect to homepage
+          })
+          .catch(error => {
+            errorDiv.textContent = error.message;
+          });
+      } else {
+        auth.createUserWithEmailAndPassword(email, password)
+          .then(() => {
+            location.href = "index.html"; // Redirect after signup
+          })
+          .catch(error => {
+            errorDiv.textContent = error.message;
+          });
+      }
+    }
+
+    function signInWithGoogle() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider)
+        .then(result => {
+          location.href = "index.html";
+        })
+        .catch(error => {
+          document.getElementById("error").textContent = error.message;
+        });
+    }
+  </script>
+</body>
+</html>
