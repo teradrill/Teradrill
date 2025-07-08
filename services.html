@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Teradrill - Our Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Same styles as your homepage for consistency */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #e3f2fd;
+      color: #1e293b;
+      min-height: 100vh;
+      padding: 30px 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(21, 101, 192, 0.15);
+      z-index: 0;
+      animation: float 10s ease-in-out infinite alternate;
+    }
+    .bubble1 {
+      width: 400px;
+      height: 400px;
+      top: 5%;
+      left: -100px;
+    }
+    .bubble2 {
+      width: 300px;
+      height: 300px;
+      bottom: 10%;
+      right: -80px;
+      animation-delay: 2s;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-40px); }
+    }
+
+    #menuToggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+    #menuToggle span {
+      width: 30px;
+      height: 4px;
+      background: #1565c0;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 200px;
+      height: 100%;
+      background-color: #1565c0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 80px;
+      gap: 25px;
+      transition: left 0.4s ease;
+      z-index: 9;
+    }
+    nav.show {
+      left: 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 8px 18px;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+    nav a:hover, nav a.active {
+      background-color: #0d47a1;
+    }
+
+    header {
+      text-align: center;
+      margin: 60px auto 30px;
+      max-width: 700px;
+      position: relative;
+      z-index: 1;
+    }
+    header h1 {
+      font-size: 3rem;
+      color: #1565c0;
+      animation: fadeInDown 1.2s ease forwards;
+    }
+    header p {
+      font-size: 1.3rem;
+      color: #475569;
+      margin-top: 10px;
+      animation: fadeInUp 1.5s ease forwards;
+    }
+
+    main {
+      background: white;
+      padding: 30px 25px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      max-width: 700px;
+      width: 100%;
+      animation: fadeIn 1.5s ease forwards;
+      margin: 20px auto 50px;
+      position: relative;
+      z-index: 1;
+    }
+
+    main h2 {
+      margin-bottom: 20px;
+      color: #1e293b;
+      font-size: 2rem;
+      text-align: center;
+      animation: slideInLeft 1s ease forwards;
+    }
+
+    main ul {
+      list-style-type: disc;
+      padding-left: 40px;
+      font-size: 1rem;
+      color: #475569;
+      animation: slideInRight 1s ease forwards;
+    }
+
+    main ul li {
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    @keyframes fadeInDown { 0% { opacity: 0; transform: translateY(-20px); } 100% { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+    @keyframes slideInLeft { 0% { opacity: 0; transform: translateX(-30px); } 100% { opacity: 1; transform: translateX(0); } }
+    @keyframes slideInRight { 0% { opacity: 0; transform: translateX(30px); } 100% { opacity: 1; transform: translateX(0); } }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 2.2rem; }
+      main { padding: 20px 15px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bubble bubble1"></div>
+  <div class="bubble bubble2"></div>
+
+  <div id="menuToggle" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <nav id="mainNav">
+    <a href="home.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html" class="active">Services</a>
+    <a href="contact.html">Contact</a>
+    <a href="order.html">Order</a>
+  </nav>
+
+  <header>
+    <h1>Our Services</h1>
+    <p>Discover what Teradrill can do for you</p>
+  </header>
+
+  <main>
+    <h2>What We Offer</h2>
+    <ul>
+      <li><strong>Custom Logo Design:</strong> Unique, memorable logos tailored to your brand identity.</li>
+      <li><strong>Graphic Editing:</strong> Image retouching, poster design, and marketing materials creation.</li>
+      <li><strong>Video Thumbnails & Editing:</strong> Eye-catching thumbnails and quick video edits for social media.</li>
+      <li><strong>Photo Touch-Ups:</strong> Enhancing your photos professionally for personal or business use.</li>
+      <li><strong>Free Trial Samples:</strong> Try before you buy with a free custom sample for your project ideas.</li>
+      <li><strong>Social Media Branding:</strong> We help you build a consistent and professional look for Instagram, YouTube, or any platform you choose.</li>
+      <li><strong>Business Card & Flyer Design:</strong> High-quality promotional material tailored to your industry and audience.</li>
+      <li><strong>Quick Delivery:</strong> We prioritize efficiency. Most small tasks are delivered within 24-48 hours.</li>
+      <li><strong>Flexible Pricing:</strong> Affordable packages for individuals, small businesses, and startups.</li>
+      <li><strong>Ongoing Support:</strong> We’re always ready to assist you even after delivery for changes or upgrades.</li>
+    </ul>
+  </main>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('mainNav');
+      nav.classList.toggle('show');
+      document.getElementById('menuToggle').style.display = nav.classList.contains('show') ? 'none' : 'flex';
+    }
+  </script>
+</body>
+</html>

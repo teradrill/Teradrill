@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact - Teradrill</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #e3f2fd;
+      color: #1e293b;
+      min-height: 100vh;
+      padding: 30px 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(21, 101, 192, 0.15);
+      z-index: 0;
+      animation: float 10s ease-in-out infinite alternate;
+    }
+    .bubble1 {
+      width: 400px;
+      height: 400px;
+      top: 5%;
+      left: -100px;
+    }
+    .bubble2 {
+      width: 300px;
+      height: 300px;
+      bottom: 10%;
+      right: -80px;
+      animation-delay: 2s;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-40px); }
+    }
+
+    #menuToggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+    #menuToggle span {
+      width: 30px;
+      height: 4px;
+      background: #1565c0;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 200px;
+      height: 100%;
+      background-color: #1565c0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 80px;
+      gap: 25px;
+      transition: left 0.4s ease;
+      z-index: 9;
+    }
+    nav.show {
+      left: 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 8px 18px;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+    nav a:hover, nav a.active {
+      background-color: #0d47a1;
+    }
+
+    header {
+      text-align: center;
+      margin: 60px auto 30px;
+      max-width: 700px;
+      position: relative;
+      z-index: 1;
+    }
+    header h1 {
+      font-size: 3rem;
+      color: #1565c0;
+      animation: fadeInDown 1.2s ease forwards;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #475569;
+      margin-top: 10px;
+      animation: fadeInUp 1.5s ease forwards;
+    }
+
+    main {
+      background: white;
+      padding: 40px 35px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+      animation: fadeIn 1.5s ease forwards;
+      margin: 20px auto 60px;
+      position: relative;
+      z-index: 1;
+    }
+    main h2 {
+      margin-bottom: 25px;
+      color: #1e293b;
+      font-size: 2.4rem;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    form label {
+      display: block;
+      font-weight: 600;
+      margin-top: 20px;
+      color: #1565c0;
+      font-size: 1rem;
+    }
+    form input, form textarea {
+      width: 100%;
+      margin-top: 8px;
+      padding: 12px 15px;
+      border-radius: 8px;
+      border: 2px solid #cbd5e1;
+      font-size: 1rem;
+      color: #334155;
+      font-family: "Poppins", sans-serif;
+      transition: border-color 0.3s ease;
+      resize: vertical;
+    }
+    form input:focus, form textarea:focus {
+      outline: none;
+      border-color: #1565c0;
+      box-shadow: 0 0 8px rgba(21, 101, 192, 0.3);
+    }
+
+    form button {
+      margin-top: 30px;
+      width: 100%;
+      background-color: #1565c0;
+      color: white;
+      font-size: 1.2rem;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background-color 0.3s ease;
+    }
+    form button:hover {
+      background-color: #0d47a1;
+    }
+
+    .success-message {
+      margin-top: 25px;
+      font-weight: 600;
+      color: green;
+      text-align: center;
+      font-size: 1.1rem;
+      animation: fadeIn 1s ease forwards;
+    }
+    .error-message {
+      margin-top: 25px;
+      font-weight: 600;
+      color: #b91c1c;
+      text-align: center;
+      font-size: 1.1rem;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 2.2rem; }
+      main { padding: 30px 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bubble bubble1"></div>
+  <div class="bubble bubble2"></div>
+
+  <div id="menuToggle" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+
+  <nav id="mainNav">
+    <a href="home.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html" class="active">Contact</a>
+    <a href="order.html">Order</a>
+  </nav>
+
+  <header>
+    <h1>Contact Teradrill</h1>
+    <p>Have questions or ideas? Send us a message!</p>
+  </header>
+
+  <main>
+    <h2>Get In Touch</h2>
+    <form id="contactForm">
+      <label for="name">Name</label>
+      <input type="text" id="name" required placeholder="Your full name" />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" required placeholder="you@example.com" />
+
+      <label for="message">Message</label>
+      <textarea id="message" rows="6" required placeholder="Text your message here..."></textarea>
+
+      <button type="submit">Send Message</button>
+      <div id="formMessage"></div>
+    </form>
+  </main>
+
+  <!-- ✅ Firebase Firestore for Contact Form -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBMgeW6QtxudLTtH8AOSl_89wLpL3ggHSs",
+      authDomain: "teradrill-7bb95.firebaseapp.com",
+      projectId: "teradrill-7bb95",
+      storageBucket: "teradrill-7bb95.appspot.com",
+      messagingSenderId: "886182110027",
+      appId: "1:886182110027:web:53eb81d9ed2e0669c03ece"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const form = document.getElementById("contactForm");
+    const formMessage = document.getElementById("formMessage");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email || !message) {
+        formMessage.textContent = "Please fill in all fields.";
+        formMessage.className = "error-message";
+        return;
+      }
+
+      try {
+        await addDoc(collection(db, "contacts"), {
+          name,
+          email,
+          message,
+          timestamp: serverTimestamp()
+        });
+
+        formMessage.textContent = "Thank you for contacting us! We'll get back to you soon.";
+        formMessage.className = "success-message";
+        form.reset();
+
+      } catch (error) {
+        formMessage.textContent = "Oops! Something went wrong. Please try again later.";
+        formMessage.className = "error-message";
+        console.error("Error saving contact:", error);
+      }
+    });
+  </script>
+
+  <script>
+    function toggleMenu() {
+      const mainNav = document.getElementById("mainNav");
+      mainNav.classList.toggle("show");
+    }
+
+    document.querySelectorAll("#mainNav a").forEach(link => {
+      link.addEventListener("click", () => {
+        document.getElementById("mainNav").classList.remove("show");
+      });
+    });
+  </script>
+</body>
+</html>

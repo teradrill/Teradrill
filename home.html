@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Teradrill - Creative Design and Editing</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+
+<style>
+footer img:hover { transform: scale(1.2); transition: transform 0.2s ease; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: "Poppins", sans-serif;
+  background: #f9f9f9;
+  color: #1e293b;
+  min-height: 100vh;
+  padding: 30px 20px;
+  position: relative;
+  overflow-x: hidden;
+}
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(21, 101, 192, 0.15);
+  z-index: 0;
+  animation: float 10s ease-in-out infinite alternate;
+}
+.bubble1 { width: 400px; height: 400px; top: 5%; left: -100px; }
+.bubble2 { width: 300px; height: 300px; bottom: 10%; right: -80px; animation-delay: 2s; }
+@keyframes float { 0% { transform: translateY(0); } 100% { transform: translateY(-40px); } }
+#menuToggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+#menuToggle span {
+  width: 30px;
+  height: 4px;
+  background: #1565c0;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+nav {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 200px;
+  height: 100%;
+  background-color: #1565c0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+  gap: 25px;
+  transition: left 0.4s ease;
+  z-index: 9;
+}
+nav.show { left: 0; }
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 8px 18px;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+nav a:hover, nav a.active { background-color: #0d47a1; }
+header {
+  text-align: center;
+  margin: 60px auto 30px;
+  max-width: 700px;
+  position: relative;
+  z-index: 1;
+}
+header h1 {
+  font-size: 3rem;
+  color: #1565c0;
+  animation: fadeInDown 1.2s ease forwards;
+}
+header p {
+  font-size: 1.3rem;
+  color: #475569;
+  margin-top: 10px;
+  animation: fadeInUp 1.5s ease forwards;
+}
+.animated-banner {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto 20px;
+  text-align: center;
+  z-index: 1;
+  position: relative;
+  animation: bannerIn 1.2s ease-out forwards;
+}
+.animated-banner img {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+@keyframes bannerIn {
+  0% { opacity: 0; transform: translateY(-30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+main {
+  background: white;
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  width: 100%;
+  animation: fadeIn 1.5s ease forwards;
+  margin: 20px auto 50px;
+  position: relative;
+  z-index: 1;
+}
+main h2 {
+  margin-bottom: 20px;
+  color: #1e293b;
+  font-size: 2rem;
+  text-align: center;
+  animation: slideInLeft 1s ease forwards;
+}
+main p {
+  margin-bottom: 25px;
+  color: #475569;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: center;
+  animation: slideInRight 1s ease forwards;
+}
+#free-trial {
+  max-width: 700px;
+  width: 100%;
+  background: white;
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1.5s ease forwards;
+  margin: 0 auto 60px;
+  position: relative;
+  z-index: 1;
+}
+#free-trial h2 {
+  color: #1565c0;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+  animation: slideInUp 1s ease forwards;
+}
+#free-trial p {
+  color: #475569;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 25px;
+  animation: slideInUp 1.2s ease forwards;
+}
+#free-trial form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+#free-trial input,
+#free-trial textarea {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s;
+  resize: none;
+}
+#free-trial input:focus,
+#free-trial textarea:focus {
+  outline: none;
+  border-color: #1565c0;
+  box-shadow: 0 0 5px rgba(21, 101, 192, 0.5);
+}
+#free-trial button {
+  background-color: #1565c0;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#free-trial button:hover {
+  background-color: #0d47a1;
+}
+#responseMsg {
+  margin-top: 15px;
+  font-weight: 600;
+  color: #1565c0;
+  min-height: 24px;
+  text-align: center;
+}
+@keyframes fadeInDown { 0% { opacity: 0; transform: translateY(-20px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes slideInLeft { 0% { opacity: 0; transform: translateX(-30px); } 100% { opacity: 1; transform: translateX(0); } }
+@keyframes slideInRight { 0% { opacity: 0; transform: translateX(30px); } 100% { opacity: 1; transform: translateX(0); } }
+@keyframes slideInUp { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
+@media (max-width: 600px) {
+  header h1 { font-size: 2.2rem; }
+  main, #free-trial { padding: 20px 15px; }
+}
+</style>
+</head>
+<body>
+
+<footer style="margin-top: 50px; text-align: center; color: #777; font-size: 0.9em;">
+<div style="margin-bottom: 10px;">
+<a href="#"><img src="https://img.icons8.com/color/48/whatsapp--v1.png" style="width: 28px; margin: 0 8px;"></a>
+<a href="#"><img src="https://img.icons8.com/color/48/instagram-new--v1.png" style="width: 28px; margin: 0 8px;"></a>
+<a href="#"><img src="https://img.icons8.com/color/48/facebook-new.png" style="width: 28px; margin: 0 8px;"></a>
+<a href="#"><img src="https://img.icons8.com/color/48/twitter--v1.png" style="width: 28px; margin: 0 8px;"></a>
+<a href="#"><img src="https://img.icons8.com/color/48/youtube-play.png" style="width: 28px; margin: 0 8px;"></a>
+</div>
+<div>&copy; 2025 Teradrill. All rights reserved.</div>
+</footer>
+
+<div class="bubble bubble1"></div>
+<div class="bubble bubble2"></div>
+
+<div id="menuToggle" onclick="toggleMenu()">
+<span></span><span></span><span></span>
+</div>
+
+<nav id="mainNav">
+<a href="index.html" class="active">Home</a>
+<a href="about.html">About</a>
+<a href="services.html">Services</a>
+<a href="contact.html">Contact</a>
+<a href="order.html">Order</a>
+</nav>
+
+<div class="animated-banner">
+<img src="https://cdn.pixabay.com/photo/2021/06/29/07/06/design-6371232_1280.jpg" alt="Design Banner" />
+</div>
+
+<header>
+<h1>Teradrill</h1>
+<p>Your trusted partner for creative design, video editing, and graphic services</p>
+</header>
+
+<main>
+<h2>Creative Design & Editing Services</h2>
+<p>
+We specialize in small, custom designs and graphic edits tailored just for you.
+Whether you need logos, posters, video thumbnails, or photo touch-ups,
+Teradrill brings your ideas to life with affordable prices and fast delivery.
+</p>
+</main>
+
+<section id="free-trial">
+<h2>Get a Free Trial Sample</h2>
+<p>
+Send us your idea below, and we'll create a free sample design for you.
+If you like it, you can order premium editing at affordable prices.
+</p>
+<form id="trialForm">
+<input type="text" name="name" placeholder="Your Name" required />
+<input type="email" name="email" placeholder="Your Email" required />
+<textarea name="idea" rows="5" placeholder="Describe your design idea" required></textarea>
+<button type="submit">Submit Idea</button>
+</form>
+<div id="responseMsg"></div>
+</section>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBMgeW6QtxudLTtH8AOSl_89wLpL3ggHSs",
+  authDomain: "teradrill-7bb95.firebaseapp.com",
+  projectId: "teradrill-7bb95",
+  storageBucket: "teradrill-7bb95.firebasestorage.app",
+  messagingSenderId: "886182110027",
+  appId: "1:886182110027:web:53eb81d9ed2e0669c03ece"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+onAuthStateChanged(auth, user => {
+  if (!user) {
+    window.location.href = "index.html";
+  }
+});
+
+const form = document.getElementById("trialForm");
+const responseMsg = document.getElementById("responseMsg");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const name = form.name.value.trim();
+  const email = form.email.value.trim();
+  const idea = form.idea.value.trim();
+
+  if (!name || !email || !idea) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  try {
+    await addDoc(collection(db, "ideas"), {
+      name,
+      email,
+      idea,
+      submittedAt: serverTimestamp()
+    });
+
+    responseMsg.textContent = `Thanks, ${name}! Your idea has been sent.`;
+    form.reset();
+  } catch (err) {
+    console.error(err);
+    responseMsg.textContent = "An error occurred. Please try again.";
+  }
+});
+</script>
+
+<script>
+function toggleMenu() {
+  const mainNav = document.getElementById("mainNav");
+  mainNav.classList.toggle("show");
+}
+document.querySelectorAll("#mainNav a").forEach(link => {
+  link.addEventListener("click", () => {
+    document.getElementById("mainNav").classList.remove("show");
+  });
+});
+</script>
+
+</body>
+</html>
