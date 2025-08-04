@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Teradrill - Creative Design and Editing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    footer img:hover { transform: scale(1.2); transition: transform 0.2s ease; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #f9f9f9;
+      color: #1e293b;
+      min-height: 100vh;
+      padding: 30px 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+    .bubble { position: absolute; border-radius: 50%; background: rgba(21, 101, 192, 0.15); z-index: 0; animation: float 10s ease-in-out infinite alternate; }
+    .bubble1 { width: 400px; height: 400px; top: 5%; left: -100px; }
+    .bubble2 { width: 300px; height: 300px; bottom: 10%; right: -80px; animation-delay: 2s; }
+    @keyframes float { 0% { transform: translateY(0); } 100% { transform: translateY(-40px); } }
+    #menuToggle { position: absolute; top: 20px; right: 20px; z-index: 10; display: flex; flex-direction: column; gap: 5px; cursor: pointer; }
+    #menuToggle span { width: 30px; height: 4px; background: #1565c0; border-radius: 2px; transition: 0.3s; }
+    nav { position: fixed; top: 0; left: -100%; width: 200px; height: 100%; background-color: #1565c0; display: flex; flex-direction: column; align-items: center; padding-top: 80px; gap: 25px; transition: left 0.4s ease; z-index: 9; }
+    nav.show { left: 0; }
+    nav a { color: white; text-decoration: none; font-weight: 600; font-size: 1.1rem; padding: 8px 18px; border-radius: 6px; transition: background-color 0.3s; }
+    nav a:hover, nav a.active { background-color: #0d47a1; }
+    header { text-align: center; margin: 60px auto 30px; max-width: 700px; position: relative; z-index: 1; }
+    header h1 { font-size: 3rem; color: #1565c0; animation: fadeInDown 1.2s ease forwards; }
+    header p { font-size: 1.3rem; color: #475569; margin-top: 10px; animation: fadeInUp 1.5s ease forwards; }
+    .animated-banner { width: 100%; max-width: 700px; margin: 0 auto 20px; text-align: center; z-index: 1; position: relative; animation: bannerIn 1.2s ease-out forwards; }
+    .animated-banner img { width: 100%; max-width: 100%; border-radius: 12px; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); }
+    main, section {
+      background: white;
+      padding: 30px 25px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      margin: 20px auto 50px;
+      position: relative;
+      z-index: 1;
+    }
+    main h2, section h2 {
+      font-size: 2rem;
+      text-align: center;
+      color: #1565c0;
+      margin-bottom: 20px;
+    }
+    main p, section p {
+      color: #475569;
+      font-size: 1rem;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    ul { padding-left: 30px; color: #475569; font-size: 1rem; }
+    ul li { margin-bottom: 12px; }
+    form { display: flex; flex-direction: column; gap: 15px; max-width: 700px; margin: auto; }
+    input, textarea, select {
+      padding: 12px;
+      font-size: 1rem;
+      border: 1.5px solid #ccc;
+      border-radius: 8px;
+      transition: border-color 0.3s;
+      resize: none;
+    }
+    button {
+      background-color: #1565c0;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    #responseMsg {
+      margin-top: 15px;
+      font-weight: 600;
+      color: #1565c0;
+      min-height: 24px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="bubble bubble1"></div>
+<div class="bubble bubble2"></div>
+
+<div id="menuToggle" onclick="toggleMenu()">
+  <span></span><span></span><span></span>
+</div>
+
+<nav id="mainNav">
+  <a href="#" class="active">Home</a>
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#order">Order</a>
+</nav>
+
+<div class="animated-banner">
+  <img src="https://cdn.pixabay.com/photo/2021/06/29/07/06/design-6371232_1280.jpg" alt="Design Banner" />
+</div>
+
+<header>
+  <h1>Teradrill</h1>
+  <p>Your trusted partner for creative design, video editing, and graphic services</p>
+</header>
+<main id="about">
+  <h2>About Us</h2>
+  <p>Teradrill is a creative design and editing studio that focuses on making high-quality visuals accessible to everyone — whether you're an influencer, entrepreneur, or student. We specialize in logos, posters, thumbnails, and image/video editing at super affordable rates.</p>
+  <p>Our team is passionate about turning simple ideas into striking visuals. With experience across various platforms and styles, we adapt quickly to what you need. Whether you're launching a brand or revamping your content, Teradrill is here to help.</p>
+  <p>We understand that design isn’t just about looks — it's about communicating ideas, building trust, and creating impact. That’s why we bring both creativity and strategy to every project we take on.</p>
+
+  <h2>Our Mission</h2>
+  <p>To simplify design for everyone by offering fast, custom, and visually compelling edits that fit your unique vision and budget.</p>
+  <p>We believe that good design should be available to all. That’s why we work hard to deliver edits that are not only beautiful but also functional, helping you communicate your message clearly and confidently.</p>
+  <p>From the first draft to the final touch, we ensure every element aligns with your vision. Whether it’s a personal project or a professional campaign, our goal is to make your ideas come alive — effortlessly.</p>
+
+  <h2>Why Choose Us?</h2>
+  <p>Because we care about your ideas. We listen, experiment, deliver fast, and always keep it affordable. Try us once — we offer a free trial edit!</p>
+  <p>We value honesty, creativity, and speed. With Teradrill, you’re not just another client — you're a partner in the creative process. Our quick turnaround times, flexible packages, and open communication ensure you always get what you’re looking for — and more.</p>
+  <p>Plus, we continuously learn and evolve. We stay updated with the latest tools and trends to give your content that modern, polished edge. Whether you need subtle elegance or bold impact, we tailor every project to suit your needs.</p>
+</main>
+<section id="services">
+  <h2>What We Offer</h2>
+  <ul>
+    <li><strong>Custom Logo Design:</strong> Unique, memorable logos tailored to your brand identity.</li>
+    <li><strong>Graphic Editing:</strong> Image retouching, poster design, and marketing materials creation.</li>
+    <li><strong>Video Thumbnails & Editing:</strong> Eye-catching thumbnails and quick video edits for social media.</li>
+    <li><strong>Photo Touch-Ups:</strong> Enhancing your photos professionally for personal or business use.</li>
+    <li><strong>Free Trial Samples:</strong> Try before you buy with a free custom sample for your project ideas.</li>
+    <li><strong>Social Media Branding:</strong> We help you build a consistent and professional look for Instagram, YouTube, or any platform you choose.</li>
+    <li><strong>Business Card & Flyer Design:</strong> High-quality promotional material tailored to your industry and audience.</li>
+    <li><strong>Quick Delivery:</strong> We prioritize efficiency. Most small tasks are delivered within 24-48 hours.</li>
+    <li><strong>Flexible Pricing:</strong> Affordable packages for individuals, small businesses, and startups.</li>
+    <li><strong>Ongoing Support:</strong> We’re always ready to assist you even after delivery for changes or upgrades.</li>
+  </ul>
+</section>
+<section id="order">
+  <h2>Place Your Order</h2>
+  <p>Follow us on Instagram to activate the order form!</p>
+  <button type="button" id="followBtn" style="background:#E1306C; margin-bottom:10px;">
+    👉 Follow @teradrill on Instagram
+  </button>
+  <small id="followNote" style="color:#555; display:block; margin-top:5px;">You must follow us to submit your order.</small>
+
+  <form id="orderForm">
+    <input type="text" id="name" name="name" placeholder="Your Name" required />
+    <input type="email" id="email" name="email" placeholder="Your Email" required />
+    <select id="design" name="design" required>
+      <option value="">Choose Design Type</option>
+      <option value="Logo">Logo</option>
+      <option value="Poster">Poster</option>
+      <option value="Instagram Reel">Instagram Reel</option>
+      <option value="YouTube Thumbnail">YouTube Thumbnail</option>
+      <option value="Other">Other</option>
+    </select>
+    <textarea id="notes" name="notes" placeholder="Describe your design idea..." rows="5" required></textarea>
+    <button type="submit">Submit Order</button>
+    <div id="responseMsg"></div>
+  </form>
+</section>
+<!-- Footer -->
+<footer style="margin-top: 50px; text-align: center;">
+  <div>
+    <a href="#"><img src="https://img.icons8.com/color/48/whatsapp--v1.png" style="width: 28px;"></a>
+    <a href="https://instagram.com/teradrill_official" target="_blank">
+      <img src="https://img.icons8.com/color/48/instagram-new--v1.png" style="width: 28px;">
+    </a>
+    <a href="#"><img src="https://img.icons8.com/color/48/facebook-new.png" style="width: 28px;"></a>
+    <a href="#"><img src="https://img.icons8.com/color/48/twitter--v1.png" style="width: 28px;"></a>
+    <a href="#"><img src="https://img.icons8.com/color/48/youtube-play.png" style="width: 28px;"></a>
+  </div>
+  <div>&copy; 2025 Teradrill. All rights reserved.</div>
+</footer>
+
+<!-- Discord Script -->
+<script src="discord.js"></script>
+
+<!-- Firebase + Discord Form Submit Combined -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBMgeW6QtxudLTtH8AOSl_89wLpL3ggHSs",
+    authDomain: "teradrill-7bb95.firebaseapp.com",
+    projectId: "teradrill-7bb95",
+    storageBucket: "teradrill-7bb95.appspot.com",
+    messagingSenderId: "886182110027",
+    appId: "1:886182110027:web:53eb81d9ed2e0669c03ece"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  onAuthStateChanged(auth, user => {
+    if (!user) {
+      window.location.href = "index.html";
+    }
+  });
+
+  const form = document.getElementById("orderForm");
+  const responseMsg = document.getElementById("responseMsg");
+  const submitBtn = form.querySelector("button[type='submit']");
+  submitBtn.disabled = true;
+  submitBtn.style.opacity = "0.6";
+
+  document.getElementById("followBtn").addEventListener("click", () => {
+    window.open("https://www.instagram.com/teradrill_official/", "_blank");
+    submitBtn.disabled = false;
+    submitBtn.style.opacity = "1";
+    document.getElementById("followNote").textContent = "✅ Now you can submit your order.";
+    document.getElementById("followNote").style.color = "green";
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const design = form.design.value;
+    const notes = form.notes.value.trim();
+
+    if (!name || !email || !design || !notes) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, "orders"), {
+        name,
+        email,
+        design,
+        notes,
+        submittedAt: serverTimestamp()
+      });
+
+      sendToDiscord("Order Form", name, email, `${design} - ${notes}`);
+      responseMsg.textContent = `✅ Thanks, ${name}! Your order has been submitted.`;
+      form.reset();
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = "0.6";
+      document.getElementById("followNote").textContent = "You must follow us to submit your order.";
+      document.getElementById("followNote").style.color = "#555";
+    } catch (err) {
+      console.error(err);
+      responseMsg.textContent = "An error occurred. Please try again.";
+    }
+  });
+</script>
+
+<!-- Navigation Toggle Script -->
+<script>
+  function toggleMenu() {
+    const mainNav = document.getElementById("mainNav");
+    mainNav.classList.toggle("show");
+  }
+
+  document.querySelectorAll("#mainNav a").forEach(link => {
+    link.addEventListener("click", () => {
+      document.getElementById("mainNav").classList.remove("show");
+    });
+  });
+</script>
+
+</body>
+</html>
