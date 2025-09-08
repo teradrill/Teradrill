@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact - Teradrill</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #f9f9f9;
+      color: #1e293b;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+      padding: 30px 20px;
+    }
+
+    /* Floating bubbles background */
+    .bubble { 
+      position: absolute; 
+      border-radius: 50%; 
+      background: rgba(21,101,192,0.15); 
+      z-index: 0; 
+      animation: float 12s ease-in-out infinite alternate, rotate 25s linear infinite;
+    }
+    .bubble1 { width: 400px; height: 400px; top: 5%; left: -100px; }
+    .bubble2 { width: 300px; height: 300px; bottom: 10%; right: -80px; animation-delay: 2s; }
+    @keyframes float { 0% { transform: translateY(0); } 100% { transform: translateY(-40px); } }
+    @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    /* Creative nav like home */
+    nav.creative-nav {
+      background: linear-gradient(135deg, #1565c0, #42a5f5);
+      max-width: 700px;
+      margin: 20px auto;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(21,101,192,0.4);
+      z-index: 2;
+    }
+    nav.creative-nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      gap: 40px;
+      padding: 15px;
+    }
+    nav.creative-nav a {
+      position: relative;
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 8px 5px;
+      transition: all 0.3s ease, transform 0.2s ease;
+    }
+    nav.creative-nav a:hover::after,
+    nav.creative-nav a.active::after { width: 100%; }
+    nav.creative-nav a:hover { color: #fff176; transform: translateY(-3px); }
+    nav.creative-nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -5px; left: 0;
+      width: 0; height: 3px;
+      background: #ffeb3b;
+      transition: width 0.3s ease;
+    }
+
+    header { text-align: center; margin: 40px auto 20px; z-index: 1; position: relative; }
+    header h1 { font-size: 2.8rem; color: #1565c0; animation: fadeInDown 1s ease; }
+    header p { font-size: 1.2rem; color: #475569; margin-top: 10px; animation: fadeInUp 1.2s ease; }
+
+    main {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 12px;
+      max-width: 650px;
+      margin: 20px auto 60px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+      position: relative;
+      z-index: 1;
+      animation: fadeIn 1.3s ease;
+    }
+    main h2 { text-align: center; color: #1565c0; font-size: 2rem; margin-bottom: 20px; }
+
+    /* Contact Form */
+    form label { font-weight: 600; color: #1565c0; margin-top: 20px; display: block; }
+    form input, form textarea {
+      width: 100%;
+      margin-top: 8px;
+      padding: 12px 15px;
+      border: 2px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      resize: vertical;
+    }
+    form input:focus, form textarea:focus {
+      border-color: #1565c0;
+      box-shadow: 0 0 12px rgba(21,101,192,0.4);
+      outline: none;
+    }
+    form button {
+      margin-top: 30px;
+      width: 100%;
+      background: #1565c0;
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    form button:hover { background: #0d47a1; transform: scale(1.02); }
+    form button::after {
+      content: "";
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 0; height: 0;
+      background: rgba(255,255,255,0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.4s ease, height 0.4s ease;
+    }
+    form button:active::after { width: 200%; height: 500%; transition: 0s; }
+
+    .success-message, .error-message {
+      margin-top: 20px;
+      font-weight: 600;
+      text-align: center;
+      font-size: 1.1rem;
+      animation: fadeIn 0.8s ease;
+    }
+    .success-message { color: green; }
+    .error-message { color: #b91c1c; }
+
+    footer {
+      margin-top: auto;
+      text-align: center;
+      padding: 20px;
+      z-index: 1;
+    }
+    footer img { width: 28px; margin: 0 5px; transition: transform 0.3s ease; }
+    footer img:hover { transform: scale(1.2) translateY(-4px); }
+
+    /* Modal */
+    #loginModal {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.6); align-items: center; justify-content: center; z-index: 1000;
+    }
+    #loginModal > div {
+      background: #fff; padding: 20px; border-radius: 12px;
+      width: 350px; text-align: center;
+      animation: modalPop 0.5s ease;
+      position: relative;
+    }
+    #loginModal input { width: 90%; padding: 10px; margin: 8px 0; border-radius: 8px; border: 1px solid #cbd5e1; }
+    #loginModal button { margin-top: 10px; padding: 10px 0; width: 90%; border-radius: 8px; background: #1565c0; color: #fff; font-weight: bold; cursor: pointer; }
+
+    #loginModal span { position: absolute; right: 15px; top: 10px; cursor: pointer; font-size: 20px; color:#555; }
+
+    /* Animations */
+    @keyframes fadeInDown { from{opacity:0;transform:translateY(-20px);} to{opacity:1;transform:translateY(0);} }
+    @keyframes fadeInUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+    @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+    @keyframes modalPop { 0% { transform: scale(0.7); opacity:0; } 50% { transform: scale(1.05); opacity:1; } 100% { transform: scale(1); } }
+
+    /* Responsive modal width */
+    @media (max-width: 480px) { #loginModal > div { width: 90%; padding: 20px; } }
+  </style>
+</head>
+<body>
+
+<div class="bubble bubble1"></div>
+<div class="bubble bubble2"></div>
+
+<!-- Navigation -->
+<nav class="creative-nav">
+  <ul>
+    <li><a href="home.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+    <li><a href="order.html">Order</a></li>
+  </ul>
+</nav>
+
+<header>
+  <h1>Contact Teradrill</h1>
+  <p>We’d love to hear from you! Share your ideas or questions below.</p>
+</header>
+
+<main>
+  <h2>Get In Touch</h2>
+  <form id="contactForm">
+    <label for="name">Name</label>
+    <input type="text" id="name" placeholder="Your full name" required />
+
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="you@example.com" required />
+
+    <label for="message">Message</label>
+    <textarea id="message" rows="6" placeholder="Write your message..." required></textarea>
+
+    <button type="submit">Send Message</button>
+    <div id="formMessage"></div>
+  </form>
+</main>
+
+<footer>
+  <div>
+    <a href="#"><img src="https://img.icons8.com/color/48/whatsapp--v1.png"></a>
+    <a href="https://www.instagram.com/teradrill_official/" target="_blank"><img src="https://img.icons8.com/color/48/instagram-new--v1.png"></a>
+    <a href="#"><img src="https://img.icons8.com/color/48/facebook-new.png"></a>
+    <a href="#"><img src="https://img.icons8.com/color/48/twitter--v1.png"></a>
+    <a href="https://www.youtube.com/channel/UC1uFt7ZzRiJrjeIV1mWkPuw"><img src="https://img.icons8.com/color/48/youtube-play.png"></a>
+  </div>
+  <div>&copy; 2025 Teradrill. All rights reserved.</div>
+</footer>
+
+<!-- Login / Signup Modal -->
+<div id="loginModal">
+  <div>
+    <span onclick="closeLogin()">&times;</span>
+    <h2 style="color:#1565c0;margin-bottom:10px;">Login / Sign Up</h2>
+    <input type="email" id="loginEmail" placeholder="Enter Email" />
+    <input type="password" id="loginPassword" placeholder="Enter Password" />
+    <button onclick="loginUser()">Login</button>
+    <p style="margin-top:10px;">Don't have an account? <a href="#" onclick="signUpUser()">Sign Up</a></p>
+  </div>
+</div>
+
+<!-- Firebase & Firestore -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBMgeW6QtxudLTtH8AOSl_89wLpL3ggHSs",
+    authDomain: "teradrill-7bb95.firebaseapp.com",
+    projectId: "teradrill-7bb95",
+    storageBucket: "teradrill-7bb95.appspot.com",
+    messagingSenderId: "886182110027",
+    appId: "1:886182110027:web:53eb81d9ed2e0669c03ece"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  window.showLogin = () => document.getElementById("loginModal").style.display = "flex";
+  window.closeLogin = () => document.getElementById("loginModal").style.display = "none";
+
+  window.loginUser = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, loginEmail.value.trim(), loginPassword.value.trim());
+      alert("✅ Logged in!");
+      closeLogin();
+    } catch (e) { alert(e.message); }
+  }
+
+  window.signUpUser = async () => {
+    try {
+      await createUserWithEmailAndPassword(auth, loginEmail.value.trim(), loginPassword.value.trim());
+      alert("🎉 Signed up!");
+      closeLogin();
+    } catch (e) { alert(e.message); }
+  }
+
+  const form = document.getElementById("contactForm");
+  const formMessage = document.getElementById("formMessage");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const user = auth.currentUser;
+    if (!user) { showLogin(); return; }
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    if (!name || !email || !message) {
+      formMessage.textContent = "Please fill in all fields.";
+      formMessage.className = "error-message";
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, "contacts"), {
+        name, email, message,
+        userId: user.uid,
+        submittedAt: serverTimestamp()
+      });
+
+      formMessage.textContent = "✅ Thank you! We'll get back to you soon.";
+      formMessage.className = "success-message";
+      form.reset();
+    } catch (err) {
+      formMessage.textContent = "❌ Something went wrong.";
+      formMessage.className = "error-message";
+      console.error(err);
+    }
+  });
+</script>
+
+</body>
+</html>
