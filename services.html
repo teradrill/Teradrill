@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Services - Teradrill</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: "Poppins", sans-serif;
+      background:#f9f9f9;
+      color:#1e293b;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      overflow-x:hidden;
+      padding:30px 20px;
+      position:relative;
+    }
+
+    /* Bubbles background */
+    .bubble { position:absolute; border-radius:50%; background:rgba(21,101,192,0.15); z-index:0; animation: float 10s ease-in-out infinite alternate; }
+    .bubble1 { width:400px; height:400px; top:5%; left:-120px; }
+    .bubble2 { width:250px; height:250px; bottom:10%; right:-80px; animation-delay:2s; }
+    @keyframes float { 0%{transform:translateY(0);} 100%{transform:translateY(-40px);} }
+
+    /* Nav */
+    nav.creative-nav {
+      background: linear-gradient(135deg, #1565c0, #42a5f5);
+      max-width: 700px;
+      margin: 20px auto;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(21,101,192,0.4);
+      z-index: 2;
+    }
+    nav.creative-nav ul {
+      display:flex; justify-content:center;
+      list-style:none; gap:40px; padding:15px;
+      flex-wrap:wrap;
+    }
+    nav.creative-nav a {
+      position:relative;
+      color:white; font-weight:600; font-size:1.1rem;
+      text-decoration:none; padding:8px 5px;
+    }
+    nav.creative-nav a::after {
+      content:""; position:absolute; bottom:-5px; left:0;
+      width:0; height:3px; background:#ffeb3b; transition:width 0.3s ease;
+    }
+    nav.creative-nav a:hover::after,
+    nav.creative-nav a.active::after { width:100%; }
+    nav.creative-nav a:hover { color:#fff176; }
+
+    /* Hero */
+    header {
+      text-align:center;
+      margin: 50px auto 30px;
+      position:relative; z-index:1;
+    }
+    header h1 {
+      font-size:2.8rem; color:#1565c0;
+      white-space:nowrap;
+      width:14ch; overflow:hidden;
+      animation: typing 2.5s steps(14) forwards;
+    }
+    header p { font-size:1.2rem; color:#475569; margin-top:10px; animation: fadeInUp 1s ease; }
+
+    @keyframes typing { from{width:0} to{width:14ch} }
+    @keyframes fadeInUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+
+    /* Services grid */
+    .services-container {
+      max-width:1000px;
+      margin: 40px auto 60px;
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap:25px;
+      z-index:1; position:relative;
+    }
+    .service-card {
+      perspective:1000px;
+      height:280px;
+      opacity:0; transform:translateY(30px);
+      transition:all 0.6s ease;
+    }
+    .service-card.show { opacity:1; transform:translateY(0); }
+    .service-inner {
+      width:100%; height:100%;
+      position:relative;
+      transform-style:preserve-3d;
+      transition: transform 0.8s;
+    }
+    .service-card:hover .service-inner { transform: rotateY(180deg); }
+    .service-front, .service-back {
+      position:absolute; top:0; left:0;
+      width:100%; height:100%;
+      border-radius:12px;
+      backface-visibility:hidden;
+      box-shadow:0 6px 15px rgba(0,0,0,0.08);
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      padding:20px; text-align:center;
+    }
+    .service-front {
+      background:white;
+      color:#1565c0;
+    }
+    .service-front h2 { margin-top:10px; font-size:1.4rem; }
+    .service-front img { width:60px; height:60px; }
+    .service-back {
+      background:#1565c0;
+      color:white;
+      transform: rotateY(180deg);
+      font-size:1rem;
+      line-height:1.6;
+    }
+
+    footer {
+      text-align:center;
+      padding:20px;
+      margin-top:auto;
+    }
+    footer img { width:28px; margin:0 5px; transition:transform .2s; }
+    footer img:hover { transform:scale(1.2); }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      nav.creative-nav ul {
+        flex-direction: column;
+        gap: 15px;
+      }
+      nav.creative-nav a { font-size: 1rem; }
+      header h1 { font-size:2rem; }
+      header p { font-size:1rem; }
+      .services-container { grid-template-columns: 1fr; }
+      .service-card { height:250px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bubble bubble1"></div>
+<div class="bubble bubble2"></div>
+
+<!-- Nav -->
+<nav class="creative-nav">
+  <ul>
+    <li><a href="home.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="order.html">Order</a></li>
+  </ul>
+</nav>
+
+<header>
+  <h1>Our Services</h1>
+  <p>Explore what Teradrill can create for you</p>
+</header>
+
+<main>
+  <div class="services-container">
+    <div class="service-card">
+      <div class="service-inner">
+        <div class="service-front">
+          <img src="https://img.icons8.com/color/96/design.png" alt="Logo Design">
+          <h2>Logo Design</h2>
+        </div>
+        <div class="service-back">
+          We create custom logos that capture your brand’s personality and leave a lasting impression.
+        </div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-inner">
+        <div class="service-front">
+          <img src="https://img.icons8.com/color/96/video-editing.png" alt="Video Editing">
+          <h2>Video Editing</h2>
+        </div>
+        <div class="service-back">
+          Smooth, professional video edits for YouTube, social media, and business presentations.
+        </div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-inner">
+        <div class="service-front">
+          <img src="https://img.icons8.com/color/96/image.png" alt="Photo Editing">
+          <h2>Photo Editing</h2>
+        </div>
+        <div class="service-back">
+          Retouching, background removal, and enhancements that bring out the best in your images.
+        </div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-inner">
+        <div class="service-front">
+          <img src="https://img.icons8.com/color/96/flyer.png" alt="Poster Design">
+          <h2>Poster Design</h2>
+        </div>
+        <div class="service-back">
+          Eye-catching posters designed for events, promotions, and advertisements.
+        </div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-inner">
+        <div class="service-front">
+          <img src="https://img.icons8.com/color/96/business.png" alt="Business Branding">
+          <h2>Branding</h2>
+        </div>
+        <div class="service-back">
+          From colors to typography, we create complete branding kits that make your business stand out.
+        </div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-inner">
+        <div class="service-front">
+          <img src="https://img.icons8.com/color/96/social-network.png" alt="Social Media Content">
+          <h2>Social Media</h2>
+        </div>
+        <div class="service-back">
+          Engaging designs and templates crafted for Instagram, Facebook, and more.
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div>
+    <a href="#"><img src="https://img.icons8.com/color/48/whatsapp--v1.png"></a>
+    <a href="https://www.instagram.com/teradrill_official/" target="_blank"><img src="https://img.icons8.com/color/48/instagram-new--v1.png"></a>
+    <a href="#"><img src="https://img.icons8.com/color/48/facebook-new.png"></a>
+    <a href="#"><img src="https://img.icons8.com/color/48/twitter--v1.png"></a>
+    <a href="https://www.youtube.com/channel/UC1uFt7ZzRiJrjeIV1mWkPuw"><img src="https://img.icons8.com/color/48/youtube-play.png"></a>
+  </div>
+  <div>&copy; 2025 Teradrill. All rights reserved.</div>
+</footer>
+
+<script>
+  // Scroll reveal animation
+  const cards = document.querySelectorAll('.service-card');
+  const reveal = () => {
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) {
+        card.classList.add('show');
+      }
+    });
+  };
+  window.addEventListener('scroll', reveal);
+  window.addEventListener('load', reveal);
+</script>
+
+</body>
+</html>

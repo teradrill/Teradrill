@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About - Teradrill</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #f9f9f9;
+      color: #1e293b;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      padding: 30px 20px;
+      position: relative;
+    }
+
+    /* Floating bubbles */
+    .bubble { position:absolute; border-radius:50%; background:rgba(21,101,192,0.15); z-index:0; animation: float 10s ease-in-out infinite alternate; }
+    .bubble1 { width:400px; height:400px; top:5%; left:-120px; }
+    .bubble2 { width:250px; height:250px; bottom:10%; right:-80px; animation-delay:2s; }
+    @keyframes float { 0%{transform:translateY(0);} 100%{transform:translateY(-40px);} }
+
+    /* Nav */
+    nav.creative-nav {
+      background: linear-gradient(135deg, #1565c0, #42a5f5);
+      max-width: 700px;
+      margin: 20px auto;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(21,101,192,0.4);
+      z-index: 2;
+    }
+    nav.creative-nav ul {
+      display:flex; justify-content:center;
+      list-style:none; gap:40px; padding:15px;
+      flex-wrap:wrap;
+    }
+    nav.creative-nav a {
+      position:relative;
+      color:white; font-weight:600; font-size:1.1rem;
+      text-decoration:none; padding:8px 5px;
+    }
+    nav.creative-nav a::after {
+      content:""; position:absolute; bottom:-5px; left:0;
+      width:0; height:3px; background:#ffeb3b; transition:width 0.3s ease;
+    }
+    nav.creative-nav a:hover::after,
+    nav.creative-nav a.active::after { width:100%; }
+    nav.creative-nav a:hover { color:#fff176; }
+
+    /* Hero */
+    header {
+      text-align:center;
+      margin: 50px auto 30px;
+      position:relative; z-index:1;
+    }
+    header h1 {
+      font-size:2.8rem; color:#1565c0;
+      white-space:nowrap;
+      width:16ch; overflow:hidden;
+      animation: typing 3s steps(16) forwards;
+    }
+    header p { font-size:1.2rem; color:#475569; margin-top:10px; animation: fadeInUp 1s ease; }
+
+    @keyframes typing { from{width:0} to{width:16ch} }
+    @keyframes fadeInUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+
+    /* About Section */
+    main {
+      max-width: 900px;
+      margin: 20px auto 60px;
+      z-index: 1;
+      position: relative;
+    }
+    .about-card {
+      background:white;
+      padding:30px;
+      border-radius:12px;
+      margin:30px 0;
+      box-shadow:0 6px 15px rgba(0,0,0,0.08);
+      text-align:center;
+      transform: translateY(30px);
+      opacity:0;
+      transition: transform .6s ease, opacity .6s ease;
+    }
+    .about-card.show {
+      transform: translateY(0);
+      opacity:1;
+    }
+    .about-card h2 { color:#1565c0; margin-bottom:15px; font-size:2rem; }
+    .about-card p { color:#475569; line-height:1.8; text-align:justify; margin-bottom:15px; }
+
+    /* Floating icons */
+    .fun-icon {
+      font-size: 2rem;
+      color: #1565c0;
+      position: absolute;
+      animation: bounce 3s infinite alternate;
+      opacity: 0.3;
+    }
+    .icon1 { top: 25%; left: 8%; }
+    .icon2 { top: 70%; right: 10%; animation-delay:1s; }
+    .icon3 { bottom: 20%; left: 15%; animation-delay:2s; }
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-20px); }
+    }
+
+    footer {
+      text-align:center;
+      padding:20px;
+      margin-top:auto;
+    }
+    footer img { width:28px; margin:0 5px; transition:transform .2s; }
+    footer img:hover { transform:scale(1.2); }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      nav.creative-nav ul {
+        flex-direction: column;
+        gap: 15px;
+      }
+      nav.creative-nav a { font-size: 1rem; }
+      header h1 { font-size:2rem; }
+      header p { font-size:1rem; }
+      .about-card { padding:20px; }
+      .about-card h2 { font-size:1.5rem; }
+      .about-card p { font-size:0.95rem; line-height:1.6; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bubble bubble1"></div>
+<div class="bubble bubble2"></div>
+
+<!-- Floating fun icons -->
+<div class="fun-icon icon1">⭐</div>
+<div class="fun-icon icon2">🎨</div>
+<div class="fun-icon icon3">🚀</div>
+
+<!-- Nav -->
+<nav class="creative-nav">
+  <ul>
+    <li><a href="home.html">Home</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="order.html">Order</a></li>
+  </ul>
+</nav>
+
+<header>
+  <h1>About Teradrill</h1>
+  <p>Our journey, our passion, and our vision for creative design.</p>
+</header>
+
+<main>
+  <div class="about-card">
+    <h2>Who We Are</h2>
+    <p>We are Teradrill, a creative studio that believes in the power of design to transform ideas into reality. From small logo designs to complete brand makeovers, our team is dedicated to providing high-quality design solutions that feel personal and unique.</p>
+    <p>Our journey started with a simple belief: creativity should be accessible to everyone. We noticed that many individuals and small businesses struggled to find affordable yet professional design services, and we set out to change that.</p>
+    <p>Over the years, we have grown into a trusted name in creative design, serving clients from different industries. Each project is not just a task for us—it’s a story, an idea, and a dream that deserves to shine.</p>
+  </div>
+
+  <div class="about-card">
+    <h2>Our Mission</h2>
+    <p>Our mission is to inspire creativity and help people express themselves through design. Whether it’s a personal project, a startup looking to establish its identity, or a business in need of fresh visuals, Teradrill is here to provide solutions that work.</p>
+    <p>We combine imagination, technical expertise, and the latest design trends to deliver projects that make an impact. We don’t just create designs—we build experiences, emotions, and memories that stay with our clients.</p>
+    <p>We aim to bridge the gap between professional quality and affordability, so that no idea is left behind. Every client, regardless of scale, deserves to see their vision come alive beautifully.</p>
+    <p>Beyond design, our mission is to foster trust and collaboration. We treat every client as a partner, listening closely and adapting to ensure that the end result feels truly yours.</p>
+  </div>
+
+  <div class="about-card">
+    <h2>Why Choose Us</h2>
+    <p>✔ Personalized attention – We listen, understand, and adapt to your needs.</p>
+    <p>✔ Affordable – Premium design shouldn’t come with a premium price tag.</p>
+    <p>✔ Fast delivery – We respect your time and deadlines.</p>
+    <p>✔ Creativity that speaks – Every design is unique, tailored to your vision.</p>
+    <p>Our team is driven by passion. We don’t settle for “good enough.” Each project is a chance to innovate, to experiment, and to deliver something that goes beyond expectations. When you choose Teradrill, you choose a team that cares deeply about your success.</p>
+    <p>Clients stay with us not only for the designs we create but also for the relationships we build. Transparency, honesty, and collaboration are at the heart of our work. We grow when you grow.</p>
+    <p>In short: Teradrill is not just about design. It’s about dreams, stories, and the belief that every idea deserves to shine.</p>
+  </div>
+</main>
+
+<footer>
+  <div>
+    <a href="#"><img src="https://img.icons8.com/color/48/whatsapp--v1.png"></a>
+    <a href="https://www.instagram.com/teradrill_official/" target="_blank"><img src="https://img.icons8.com/color/48/instagram-new--v1.png"></a>
+    <a href="#"><img src="https://img.icons8.com/color/48/facebook-new.png"></a>
+    <a href="#"><img src="https://img.icons8.com/color/48/twitter--v1.png"></a>
+    <a href="https://www.youtube.com/channel/UC1uFt7ZzRiJrjeIV1mWkPuw"><img src="https://img.icons8.com/color/48/youtube-play.png"></a>
+  </div>
+  <div>&copy; 2025 Teradrill. All rights reserved.</div>
+</footer>
+
+<script>
+  const cards = document.querySelectorAll('.about-card');
+  const reveal = () => {
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) {
+        card.classList.add('show');
+      }
+    });
+  };
+  window.addEventListener('scroll', reveal);
+  window.addEventListener('load', reveal);
+</script>
+
+</body>
+</html>

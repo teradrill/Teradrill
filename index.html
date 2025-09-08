@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login / Sign Up - Teradrill</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    }
+
+    .background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -150px;
+      background: rgba(21, 101, 192, 0.3);
+      border-radius: 50%;
+      animation: rise 20s infinite ease-in;
+    }
+
+    .bubble:nth-child(1) { width: 120px; height: 120px; left: 10%; animation-delay: 0s; }
+    .bubble:nth-child(2) { width: 80px; height: 80px; left: 40%; animation-delay: 3s; }
+    .bubble:nth-child(3) { width: 100px; height: 100px; left: 70%; animation-delay: 6s; }
+
+    @keyframes rise {
+      0% { transform: translateY(0) scale(1); opacity: 0.4; }
+      100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+    }
+
+    .wrapper {
+      display: flex;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      overflow: hidden;
+      width: 100%;
+      max-width: 500px;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .top {
+      background: linear-gradient(135deg, #1565c0, #0d47a1);
+      color: white;
+      padding: 30px;
+      text-align: center;
+      font-size: 1.7rem;
+      font-weight: bold;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+
+    .right {
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #1565c0;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 25px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+      background: none;
+      outline: none;
+      transition: 0.3s ease;
+    }
+
+    .input-group label {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-50%);
+      background: white;
+      padding: 0 5px;
+      color: #aaa;
+      transition: 0.3s ease;
+      pointer-events: none;
+    }
+
+    .input-group input:focus + label,
+    .input-group input:not(:placeholder-shown) + label {
+      top: -10px;
+      left: 12px;
+      font-size: 0.8rem;
+      color: #1565c0;
+    }
+
+    button, .google-btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+
+    button {
+      background: #1565c0;
+      color: white;
+      font-weight: bold;
+      border: none;
+    }
+
+    button:hover {
+      background: #0d47a1;
+    }
+
+    .google-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      color: #444;
+      border: 1.5px solid #ccc;
+      font-weight: 500;
+    }
+
+    .google-btn img {
+      margin-right: 10px;
+    }
+
+    .google-btn:hover {
+      background-color: #f0f0f0;
+      transform: scale(1.02);
+    }
+
+    .toggle {
+      text-align: center;
+      margin-top: 20px;
+      color: #1565c0;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .toggle:hover {
+      color: #0d47a1;
+    }
+
+    #error {
+      color: red;
+      font-size: 0.9rem;
+      text-align: center;
+      min-height: 18px;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      .top {
+        font-size: 1.4rem;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+
+  <div class="wrapper">
+    <div class="container">
+      <div class="top">Welcome To<br>Teradrill</div>
+      <div class="right">
+        <h2 id="formTitle">Login/Sign up</h2>
+        <div id="error"></div>
+
+        <div class="input-group" id="usernameGroup" style="display: none;">
+          <input type="text" id="username" placeholder=" " autocomplete="off">
+          <label for="username">Username</label>
+        </div>
+
+        <div class="input-group">
+          <input type="email" id="email" placeholder=" " autocomplete="off">
+          <label for="email">Email</label>
+        </div>
+
+        <div class="input-group">
+          <input type="password" id="password" placeholder=" " autocomplete="off">
+          <label for="password">Password</label>
+        </div>
+
+        <div class="input-group" id="confirmGroup" style="display: none;">
+          <input type="password" id="confirmPassword" placeholder=" ">
+          <label for="confirmPassword">Confirm Password</label>
+        </div>
+
+        <button onclick="handleAuth()" id="authBtn">Login</button>
+
+        <button class="google-btn" onclick="signInWithGoogle()">
+          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="20" height="20" alt="Google logo">
+          Sign in with Google
+        </button>
+
+        <div class="toggle" onclick="toggleMode()">Don't have an account? Sign Up</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBMgeW6QtxudLTtH8AOSl_89wLpL3ggHSs",
+      authDomain: "teradrill-7bb95.firebaseapp.com",
+      projectId: "teradrill-7bb95",
+      storageBucket: "teradrill-7bb95.appspot.com",
+      messagingSenderId: "886182110027",
+      appId: "1:886182110027:web:53eb81d9ed2e0669c03ece"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    let mode = "login";
+
+    const errorMessages = {
+      "auth/wrong-password": "Incorrect password. Please try again.",
+      "auth/user-not-found": "No account found with this email.",
+      "auth/invalid-email": "The email address is not valid.",
+      "auth/too-many-requests": "Too many attempts. Please try again later.",
+      "auth/invalid-credential": "Incorrect Mail or Password. Please try again.",
+      "auth/email-already-in-use": "This email is already registered.",
+      "auth/weak-password": "Password is too weak. It must be at least 6 characters."
+    };
+
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        localStorage.setItem("userEmail", user.email);
+        location.href = "home.html";
+      }
+    });
+
+    function toggleMode() {
+      mode = mode === "login" ? "signup" : "login";
+      document.getElementById("formTitle").textContent = mode === "login" ? "Login" : "Create Account";
+      document.getElementById("authBtn").textContent = mode === "login" ? "Login" : "Sign Up";
+      document.querySelector(".toggle").textContent = mode === "login" ? "Don't have an account? Sign Up" : "Already have an account? Login";
+      document.getElementById("usernameGroup").style.display = mode === "login" ? "none" : "block";
+      document.getElementById("confirmGroup").style.display = mode === "login" ? "none" : "block";
+      document.getElementById("error").textContent = "";
+    }
+
+    function handleAuth() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const username = document.getElementById("username").value.trim();
+      const confirmPassword = document.getElementById("confirmPassword").value.trim();
+      const errorDiv = document.getElementById("error");
+
+      if (!email || !password || (mode === "signup" && (!username || !confirmPassword))) {
+        errorDiv.textContent = "Please fill in all fields.";
+        return;
+      }
+
+      if (mode === "login") {
+        auth.signInWithEmailAndPassword(email, password)
+          .then(userCredential => {
+            localStorage.setItem("userEmail", userCredential.user.email);
+            location.href = "home.html";
+          })
+          .catch(error => {
+            const message = errorMessages[error.code] || error.message;
+            errorDiv.textContent = message;
+          });
+      } else {
+        if (password.length < 6) {
+          errorDiv.textContent = "Password must be at least 6 characters.";
+          return;
+        }
+        if (password !== confirmPassword) {
+          errorDiv.textContent = "Passwords do not match.";
+          return;
+        }
+
+        auth.createUserWithEmailAndPassword(email, password)
+          .then(userCredential => {
+            localStorage.setItem("userEmail", userCredential.user.email);
+            localStorage.setItem("username", username);
+            location.href = "home.html";
+          })
+          .catch(error => {
+            const message = errorMessages[error.code] || error.message;
+            errorDiv.textContent = message;
+          });
+      }
+    }
+
+    function signInWithGoogle() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider)
+        .then(result => {
+          localStorage.setItem("userEmail", result.user.email);
+          location.href = "home.html";
+        })
+        .catch(error => {
+          const message = errorMessages[error.code] || error.message;
+          document.getElementById("error").textContent = message;
+        });
+    }
+  </script>
+</body>
+</html>
